@@ -19,7 +19,7 @@ function lexer(input) {
   };
 
   // separar
-  const regex = /\d+(\.\d+)?|\/\/.*|\/\*[\s\S]*?\*\/|;|,|\.|>=|>|<|<=|:=|=|:|\(|[a-zA-Z][a-zA-Z0-9]*|\)|IF|ELSE|BEGIN|PROGRAM|INTEGER|THEN|STRING|BOOLEAN|END|WHILE|DO|READ|VAR|FALSE|TRUE|WRITE|.[a-z]+|\+|\-|\*|\//g;
+  const regex = /\d+(\.\d+)?|\/\/.*|\/\*[\s\S]*?\*\/|;|,|\.|>=|>|<|<=|==|:=|=|:|\(|[a-zA-Z][a-zA-Z0-9]*|\)|IF|ELSE|BEGIN|PROGRAM|INTEGER|THEN|STRING|BOOLEAN|END|WHILE|DO|READ|VAR|FALSE|TRUE|WRITE|.[a-z]+|\+|\-|\*|\//g;
   const WORD = /\bBEGIN|PROGRAM|IF|ELSE|THEN|END|WHILE|DO|READ|VAR|FALSE|TRUE|WRITE\b/g
   const TIP = /\bINTEGER|STRING|BOOLEAN\b/g
   const NUMBER = /\d+(\.\d+)?/g
