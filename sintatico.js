@@ -1,6 +1,6 @@
 const lexer = require('./lexico');
 
-const tokens = lexer("PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF walter > y THEN WRITE(x) ELSE WRITE(y) END.");
+const tokens = lexer("PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF walter == TRUE THEN WRITE(x) ELSE WRITE(y) END.");
 
 const tokensIterator = tokens[Symbol.iterator]();
 let currentToken = tokensIterator.next().value;
@@ -176,8 +176,10 @@ function factor() {
   } else if (currentToken.type === "OPNEG") {
     match("OPNEG");
     factor();
-  } else if (currentToken.type === "TRUE" || currentToken.type === "FALSE") {
-    match([ "TRUE", "FALSE" ]);
+  } else if (currentToken.type === "TRUE") {
+    match("TRUE");
+  } else if (currentToken.type === "FALSE") {
+    match("FALSE");
   } else {
     throw new Error(`Unexpected token: ${currentToken.value}`);
   }
