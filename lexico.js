@@ -105,3 +105,5 @@ function numberUtils(token, tokens) {
 }
 
 console.log(lexer("PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF walter > y THEN WRITE(x) ELSE WRITE(y) END."))
+
+module.exports = lexer
