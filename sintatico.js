@@ -1,45 +1,6 @@
-// "PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF x > y THEN WRITE(x) ELSE WRITE(y) END."
+const lexer = require('./lexico');
 
-const tokens = 
-  [
-    { value: 'walter', type: 'IDENTIFIER' },
-    { value: 'PROGRAM', type: 'PROGRAM' },
-    { value: 'example', type: 'IDENTIFIER' },
-    { value: ';', type: 'PVIG' },
-    { value: 'VAR', type: 'VAR' },
-    { value: 'x', type: 'IDENTIFIER' },
-    { value: ',', type: 'VIG' },
-    { value: 'y', type: 'IDENTIFIER' },
-    { value: ':', type: 'DPONTOS' },
-    { value: 'STRING', type: 'Tip' },
-    { value: ';', type: 'PVIG' },
-    { value: 'BEGIN', type: 'BEGIN' },
-    { value: 'x', type: 'IDENTIFIER' },
-    { value: ':=', type: 'ATRIB' },
-    { value: '5', type: 'CTE' },
-    { value: ';', type: 'PVIG' },
-    { value: 'y', type: 'IDENTIFIER' },
-    { value: ':=', type: 'ATRIB' },
-    { value: '7', type: 'CTE' },
-    { value: ';', type: 'PVIG' },
-    { value: 'IF', type: 'IF' },
-    { value: 'walter', type: 'IDENTIFIER' },
-    { value: '>', type: 'OPREL' },
-    { value: 'y', type: 'IDENTIFIER' },
-    { value: 'THEN', type: 'THEN' },
-    { value: 'WRITE', type: 'WRITE' },
-    { value: '(', type: 'ABPAR' },
-    { value: 'x', type: 'IDENTIFIER' },
-    { value: ')', type: 'FPAR' },
-    { value: 'ELSE', type: 'ELSE' },
-    { value: 'WRITE', type: 'WRITE' },
-    { value: '(', type: 'ABPAR' },
-    { value: 'y', type: 'IDENTIFIER' },
-    { value: ')', type: 'FPAR' },
-    { value: 'END', type: 'END' },
-    { value: '.', type: 'PONTO' }
-  ]
-
+const tokens = lexer("PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF walter > y THEN WRITE(x) ELSE WRITE(y) END.");
 
 const tokensIterator = tokens[Symbol.iterator]();
 let currentToken = tokensIterator.next().value;
