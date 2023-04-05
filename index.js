@@ -1,14 +1,4 @@
-const A = [
-  'PROGRAM', 'example', ';',     'VAR', 
-  'x',       ',',       'y',     ':',   
-  'STRING',  ';',       'BEGIN', 'x',   
-  ':=',      '5',       ';',     'y',   
-  ':=',      '7',       ';',     'IF',  
-  'x',       '>',       'y',     'THEN',
-  'WRITE',   '(',       'x',     ')',   
-  ';',       'ELSE',    'WRITE', '(',   
-  'y',       ')',       ';',     'END', '.'
-]
+// "PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF x > y THEN WRITE(x) ELSE WRITE(y) END."
 
 const tokens = [
   {
@@ -64,7 +54,7 @@ const tokens = [
     type: 'PVIG'
   },
   {
-    value: 'Y',
+    value: 'y',
     type: 'IDENTIFIER'
   },
   {
@@ -74,6 +64,66 @@ const tokens = [
   {
     value: '7',
     type: 'CTE'
+  },
+  {
+    value: ';',
+    type: 'PVIG'
+  },
+  {
+    value: 'IF',
+    type: 'IF'
+  },
+  {
+    value: '7',
+    type: 'CTE'
+  },
+  {
+    value: '>',
+    type: 'OPREL'
+  },
+  {
+    value: '5',
+    type: 'CTE'
+  },
+  {
+    value: 'THEN',
+    type: 'THEN'
+  },
+  {
+    value: 'WRITE',
+    type: 'WRITE'
+  },
+  {
+    value: '(',
+    type: 'ABPAR'
+  },
+  {
+    value: 'x',
+    type: 'CADEIA'
+  },
+  {
+    value: ')',
+    type: 'FPAR'
+  },
+  {
+    value: 'ELSE',
+    type: 'ELSE'
+  },
+  {
+    value: 'WRITE',
+    type: 'WRITE'
+  },
+  {
+    value: '(',
+    type: 'ABPAR'
+  },
+  {
+    value: 'y',
+    type: 'CADEIA'
+  },
+  {
+    value: ')',
+    type: 'FPAR'
   },
   {
     value: 'END',
@@ -87,13 +137,10 @@ const tokens = [
 
 
 const tokensIterator = tokens[Symbol.iterator]();
-console.log("tokensIterator", tokensIterator)
 let currentToken = tokensIterator.next().value;
-console.log("currentToken", currentToken)
 
 function match(expectedTokenType) {
-
-  console.log("aqui dentro", currentToken)
+  console.log("[TOKEN ATUAL]: ", currentToken)
   if (currentToken.type === expectedTokenType) {
     const tokenValue = currentToken.value;
     currentToken = tokensIterator.next().value;
@@ -269,5 +316,4 @@ function factor() {
   }
 }
 
-// Teste da análise sintática
 prog();
