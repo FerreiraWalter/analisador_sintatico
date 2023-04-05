@@ -1,151 +1,57 @@
 // "PROGRAM example; VAR x, y: STRING; BEGIN x := 5; y := 7; IF x > y THEN WRITE(x) ELSE WRITE(y) END."
 
-const tokens = [
-  {
-    value: 'PROGRAM',
-    type: 'PROGRAM'
-  },
-  {
-    value: 'walter',
-    type: 'IDENTIFIER'
-  },
-  {
-    value: ';',
-    type: 'PVIG'
-  },
-  {
-    value: 'VAR',
-    type: 'VAR'
-  },
-  {
-    value: 'x',
-    type: 'IDENTIFIER'
-  },
-  {
-    value: ':',
-    type: 'DPONTOS'
-  },
-  {
-    value: 'STRING',
-    type: 'Tip'
-  },
-  {
-    value: ';',
-    type: 'PVIG'
-  },
-  {
-    value: 'BEGIN',
-    type: 'BEGIN'
-  },
-  {
-    value: 'x',
-    type: 'IDENTIFIER'
-  },
-  {
-    value: ':=',
-    type: 'ATRIB'
-  },
-  {
-    value: '5',
-    type: 'CTE'
-  },
-  {
-    value: ';',
-    type: 'PVIG'
-  },
-  {
-    value: 'y',
-    type: 'IDENTIFIER'
-  },
-  {
-    value: ':=',
-    type: 'ATRIB'
-  },
-  {
-    value: '7',
-    type: 'CTE'
-  },
-  {
-    value: ';',
-    type: 'PVIG'
-  },
-  {
-    value: 'IF',
-    type: 'IF'
-  },
-  {
-    value: '7',
-    type: 'CTE'
-  },
-  {
-    value: '>',
-    type: 'OPREL'
-  },
-  {
-    value: '5',
-    type: 'CTE'
-  },
-  {
-    value: 'THEN',
-    type: 'THEN'
-  },
-  {
-    value: 'WRITE',
-    type: 'WRITE'
-  },
-  {
-    value: '(',
-    type: 'ABPAR'
-  },
-  {
-    value: 'x',
-    type: 'CADEIA'
-  },
-  {
-    value: ')',
-    type: 'FPAR'
-  },
-  {
-    value: 'ELSE',
-    type: 'ELSE'
-  },
-  {
-    value: 'WRITE',
-    type: 'WRITE'
-  },
-  {
-    value: '(',
-    type: 'ABPAR'
-  },
-  {
-    value: 'y',
-    type: 'CADEIA'
-  },
-  {
-    value: ')',
-    type: 'FPAR'
-  },
-  {
-    value: 'END',
-    type: 'END'
-  },
-  {
-    value: '.',
-    type: 'PONTO'
-  },
-]
+const tokens = 
+  [
+    { value: 'walter', type: 'IDENTIFIER' },
+    { value: 'PROGRAM', type: 'PROGRAM' },
+    { value: 'example', type: 'IDENTIFIER' },
+    { value: ';', type: 'PVIG' },
+    { value: 'VAR', type: 'VAR' },
+    { value: 'x', type: 'IDENTIFIER' },
+    { value: ',', type: 'VIG' },
+    { value: 'y', type: 'IDENTIFIER' },
+    { value: ':', type: 'DPONTOS' },
+    { value: 'STRING', type: 'Tip' },
+    { value: ';', type: 'PVIG' },
+    { value: 'BEGIN', type: 'BEGIN' },
+    { value: 'x', type: 'IDENTIFIER' },
+    { value: ':=', type: 'ATRIB' },
+    { value: '5', type: 'CTE' },
+    { value: ';', type: 'PVIG' },
+    { value: 'y', type: 'IDENTIFIER' },
+    { value: ':=', type: 'ATRIB' },
+    { value: '7', type: 'CTE' },
+    { value: ';', type: 'PVIG' },
+    { value: 'IF', type: 'IF' },
+    { value: 'walter', type: 'IDENTIFIER' },
+    { value: '>', type: 'OPREL' },
+    { value: 'y', type: 'IDENTIFIER' },
+    { value: 'THEN', type: 'THEN' },
+    { value: 'WRITE', type: 'WRITE' },
+    { value: '(', type: 'ABPAR' },
+    { value: 'x', type: 'IDENTIFIER' },
+    { value: ')', type: 'FPAR' },
+    { value: 'ELSE', type: 'ELSE' },
+    { value: 'WRITE', type: 'WRITE' },
+    { value: '(', type: 'ABPAR' },
+    { value: 'y', type: 'IDENTIFIER' },
+    { value: ')', type: 'FPAR' },
+    { value: 'END', type: 'END' },
+    { value: '.', type: 'PONTO' }
+  ]
 
 
 const tokensIterator = tokens[Symbol.iterator]();
 let currentToken = tokensIterator.next().value;
 
 function match(expectedTokenType) {
-  console.log("[TOKEN ATUAL]: ", currentToken)
   if (currentToken.type === expectedTokenType) {
+    console.log("[TOKEN ATUAL]: ", currentToken, "✅")
     const tokenValue = currentToken.value;
     currentToken = tokensIterator.next().value;
     return tokenValue;
   } else {
+    console.log("[TOKEN ATUAL]: ", currentToken, "❌")
     throw new Error(
       `Unexpected token: ${currentToken.value}. Expected token of type ${expectedTokenType}.`
     );
